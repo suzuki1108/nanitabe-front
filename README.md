@@ -1,24 +1,14 @@
 # nanitabe-app
 
-## Project setup
+## ローカル環境構築について
 ```
-npm install
-```
+# リポジトリのクローン
+$ git clone https://github.com/fact11824/nanitabe-front.git
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# ライブラリの導入
+$ cd nanitabe-app
+$ npm install
 
-### Compiles and minifies for production
+# ローカルサーバ起動
+$ npm run serve
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
