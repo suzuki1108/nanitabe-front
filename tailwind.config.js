@@ -256,6 +256,14 @@ module.exports = {
       DEFAULT: "1",
     },
     fontFamily: {
+      body: [
+        "Hiragino Kaku Gothic ProN",
+        "Meiryo",
+        "Helvetica Neue",
+        "Arial",
+        "Hiragino Sans",
+        "sans-serif",
+      ],
       sans: [
         "ui-sans-serif",
         "system-ui",
