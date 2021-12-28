@@ -1,10 +1,10 @@
 <template>
   <header
-    class="flex justify-between text-white font-bold items-center"
+    class="flex justify-between text-white font-bold items-center drop-shadow-lg"
     :class="is_bg_clear ? '' : 'bg-primary'"
   >
     <div>
-      <h1 class="mt-4 mb-4 ml-8 text-lg md:text-2xl">nanitabe</h1>
+      <h1 class="mt-4 mb-4 ml-8 text-lg md:text-3xl">nanitabe</h1>
     </div>
     <div>
       <a href="#" class="mr-8 text-xs md:text-sm">ログイン</a>
