@@ -5,6 +5,7 @@
       v-for="item in iconTestArray"
       :key="item"
       :icon="item"
+      class="text-primary"
     />
   </div>
 </template>

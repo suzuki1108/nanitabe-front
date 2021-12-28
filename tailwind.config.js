@@ -27,6 +27,15 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
     },
+    // 基本的に以下extend内の色と、black/white以外は使用しない
+    extend: {
+      colors: {
+        primary: "#FFCC66",
+        secondary: "#FFEECC",
+        darkgray: "#666666",
+        lightgray: "#CCCCCC",
+      },
+    },
     spacing: {
       px: "1px",
       0: "0px",
