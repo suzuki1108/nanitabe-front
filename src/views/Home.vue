@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div class="home relative w-full min-h-screen bg-cover bg-no-repeat">
+    <h1 class="font-body text-4xl text-white">nanitabe font test</h1>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 export default defineComponent({
   name: "Home",
-  components: {
-    HelloWorld,
-  },
 });
 </script>
+
+<style>
+.home {
+  background-image: url(~@/assets/main-image.jpg);
+}
+</style>
