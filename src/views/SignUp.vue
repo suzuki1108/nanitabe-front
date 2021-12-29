@@ -13,15 +13,21 @@
           <p class="text-white text-base md:text-xl">メールアドレス</p>
           <input
             type="text"
-            class="mt-2 w-72 md:w-80 h-12 rounded-lg outline-black text-lg md:text-xl"
+            v-model="state.email"
+            class="mt-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
+            :class="emailOutLine"
           />
         </div>
 
         <div class="mt-4">
-          <p class="text-white text-base md:text-xl">パスワード</p>
+          <p class="text-white text-base md:text-xl">
+            パスワード<span class="text-xs">※英数字8~20桁</span>
+          </p>
           <input
-            type="text"
-            class="mt-2 w-72 md:w-80 h-12 rounded-lg outline-black text-lg md:text-xl"
+            type="password"
+            v-model="state.password"
+            class="mt-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
+            :class="passwordOutLine"
           />
         </div>
 
@@ -47,11 +53,19 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HeaderComponent from "@/components/HeaderComponent.vue";
+import FormModel from "@/model/FormModel";
 
 export default defineComponent({
-  name: "SignIn",
+  name: "SignUp",
   components: {
     HeaderComponent,
+  },
+  setup() {
+    const formModel = FormModel();
+
+    return {
+      ...formModel,
+    };
   },
 });
 </script>
@@ -59,5 +73,10 @@ export default defineComponent({
 <style>
 .sign-in {
   background-image: url(~@/assets/main-image.jpg);
+}
+
+.outline-red {
+  outline: 2px solid red;
+  outline-offset: 0px;
 }
 </style>
