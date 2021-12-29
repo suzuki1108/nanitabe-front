@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="url"
-    class="text-center text-xl md:text-2xl w-40 md:w-2/12 py-5 md:py-7 bg-primary opacity-80 font-bold drop-shadow-lg rounded hover:opacity-100"
+    class="text-center text-xl md:text-2xl w-40 md:w-2/12 py-5 md:py-7 bg-primary opacity-80 font-bold drop-shadow-lg rounded-lg hover:opacity-100"
   >
     <slot></slot>
   </router-link>
