@@ -4,11 +4,17 @@
     :class="is_bg_clear ? '' : 'bg-primary'"
   >
     <div>
-      <h1 class="mt-4 mb-4 ml-8 text-lg md:text-3xl">nanitabe</h1>
+      <h1 class="mt-4 mb-4 ml-8 text-lg md:text-3xl">
+        <router-link to="/">nanitabe</router-link>
+      </h1>
     </div>
     <div>
-      <a href="#" class="mr-8 text-xs md:text-sm">ログイン</a>
-      <a href="#" class="mr-8 text-xs md:text-sm">無料会員登録</a>
+      <router-link to="sign_in" class="mr-8 text-xs md:text-sm">
+        ログイン
+      </router-link>
+      <router-link to="sign_up" class="mr-8 text-xs md:text-sm">
+        無料会員登録
+      </router-link>
     </div>
   </header>
 </template>
