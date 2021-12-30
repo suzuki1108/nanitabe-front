@@ -12,8 +12,8 @@ export default defineComponent({
     show: {
       type: Boolean,
       require: true,
-    }
-  }
+    },
+  },
 });
 </script>
 

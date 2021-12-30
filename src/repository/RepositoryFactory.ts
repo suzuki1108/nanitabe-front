@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import AccountRegisterRepository from "@/repository/AccountRegisterRepository";
 import LoginRepository from "@/repository/LoginRepository";
 
