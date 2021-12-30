@@ -1,4 +1,5 @@
 import AccountRegisterRepository from "@/repository/AccountRegisterRepository";
+import LoginRepository from "@/repository/LoginRepository";
 
 interface repositoryObject {
   [name: string]: any;
@@ -6,6 +7,7 @@ interface repositoryObject {
 
 const repositories: repositoryObject = {
   newregister: AccountRegisterRepository,
+  login: LoginRepository,
 };
 
 export const RepositoryFactory = {

@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
+import { config } from "@/constants/const";
 
 const repository = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: config.API_BASE_URL,
 });
 
 export default (resource: string): any => {
