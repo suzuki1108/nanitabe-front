@@ -16,10 +16,10 @@ export interface SignUpResponse {
 const SignUpModel = (): any => {
   const signUp = async (param: Form) => {
     const res = await signUpRepository.post(param).catch((e: AxiosError) => {
-      toaster_failure(config.UNEXPECTED_ERROR_MSG);
       return e.response;
     });
     if (res === undefined) {
+      toaster_failure(config.UNEXPECTED_ERROR_MSG);
       return null;
     }
 
