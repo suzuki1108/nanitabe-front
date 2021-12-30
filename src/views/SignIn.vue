@@ -43,7 +43,7 @@
 
         <div class="mt-2 md:mt-4">
           <router-link
-            to="sign_in"
+            to="sign_up"
             class="text-white text-xs md:text-sm underline underline-offset-4"
           >
             無料会員登録はこちら
