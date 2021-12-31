@@ -31,10 +31,7 @@
         </div>
 
         <button
-          @click="
-            loadingStart();
-            signIn();
-          "
+          @click="signIn"
           :disabled="!(isEmailValid && isPasswordValid)"
           class="mt-8 md:mt-16 w-72 md:w-80 h-12 rounded-lg bg-primary text-base md:text-xl font-bold text-center opacity-80 hover:opacity-100"
         >

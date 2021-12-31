@@ -27,16 +27,22 @@ const FormModel = (): any => {
     state.loading = true;
   };
 
-  const signUp = () => {
-    const model = SignUpModel();
-    model.signUp(form);
+  const loadingEnd = () => {
     state.loading = false;
   };
 
-  const signIn = () => {
+  const signUp = async () => {
+    loadingStart();
+    const model = SignUpModel();
+    await model.signUp(form);
+    loadingEnd();
+  };
+
+  const signIn = async () => {
+    loadingStart();
     const model = SignInModel();
-    model.signIn(form);
-    state.loading = false;
+    await model.signIn(form);
+    loadingEnd();
   };
 
   // emailのバリデーション結果を保持
@@ -74,7 +80,6 @@ const FormModel = (): any => {
   return {
     form,
     state,
-    loadingStart,
     signUp,
     signIn,
     isEmailValid,
