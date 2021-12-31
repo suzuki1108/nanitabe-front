@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isBlank, isEmailAddress, isPassword } from "@/util/Utility";
-import { computed, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import SignUpModel from "@/model/SignUpModel";
 import SignInModel from "@/model/SignInModel";
 import router from "@/router/index";
 import { config } from "@/constants/const";
+import { getJwtToken } from "./LocalStorageModel";
 export interface Form {
   email: string;
   password: string;
@@ -15,6 +16,13 @@ interface State {
 }
 
 const FormModel = (): any => {
+  // トークンが生きている場合はMyPageへリダイレクト
+  onMounted(() => {
+    if (getJwtToken() !== null) {
+      router.push({ name: config.VIEW_NAME_MY_PAGE });
+    }
+  });
+
   const form = reactive<Form>({
     email: "",
     password: "",
