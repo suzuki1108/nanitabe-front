@@ -3,7 +3,8 @@ import { isBlank, isEmailAddress, isPassword } from "@/util/Utility";
 import { computed, reactive } from "vue";
 import SignUpModel from "@/model/SignUpModel";
 import SignInModel from "@/model/SignInModel";
-
+import router from "@/router/index";
+import { config } from "@/constants/const";
 export interface Form {
   email: string;
   password: string;
@@ -34,15 +35,23 @@ const FormModel = (): any => {
   const signUp = async () => {
     loadingStart();
     const model = SignUpModel();
-    await model.signUp(form);
+    const result = await model.signUp(form);
     loadingEnd();
+
+    if (result) {
+      router.push({ name: config.VIEW_NAME_MY_PAGE });
+    }
   };
 
   const signIn = async () => {
     loadingStart();
     const model = SignInModel();
-    await model.signIn(form);
+    const result = await model.signIn(form);
     loadingEnd();
+
+    if (result) {
+      router.push({ name: config.VIEW_NAME_MY_PAGE });
+    }
   };
 
   // emailのバリデーション結果を保持

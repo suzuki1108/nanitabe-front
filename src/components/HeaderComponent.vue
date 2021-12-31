@@ -9,18 +9,45 @@
       </h1>
     </div>
     <div>
-      <router-link to="sign_in" class="mr-8 text-xs md:text-sm">
+      <router-link
+        v-if="!state.isLogin"
+        to="sign_in"
+        class="mr-8 text-xs md:text-sm"
+      >
         ログイン
       </router-link>
-      <router-link to="sign_up" class="mr-8 text-xs md:text-sm">
+
+      <router-link
+        v-if="!state.isLogin"
+        to="sign_up"
+        class="mr-8 text-xs md:text-sm"
+      >
         無料会員登録
       </router-link>
+
+      <router-link
+        v-if="state.isLogin"
+        to="my_page"
+        class="mr-8 text-xs md:text-sm"
+      >
+        お気に入り
+      </router-link>
+
+      <button
+        v-if="state.isLogin"
+        @click="logout"
+        class="mr-8 text-xs md:text-sm"
+      >
+        ログアウト
+      </button>
     </div>
   </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import HeaderModel from "@/model/HeaderModel";
+
 export default defineComponent({
   name: "HeaderComponent",
   props: {
@@ -29,6 +56,13 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+  },
+  setup() {
+    const headerModel = HeaderModel();
+
+    return {
+      ...headerModel,
+    };
   },
 });
 </script>

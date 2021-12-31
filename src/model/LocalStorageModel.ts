@@ -29,3 +29,9 @@ export const getJwtToken = (): string | null => {
 
   return localStorage.getItem(config.JWT_TOKEN_KEY);
 };
+
+// ローカルストレージからトークンを削除
+export const deleteToken = (): void => {
+  localStorage.removeItem(config.JWT_TOKEN_KEY);
+  localStorage.removeItem(config.JWT_TOKEN_EXPIRE_KEY);
+};

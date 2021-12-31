@@ -7,8 +7,10 @@
       <p class="pt-8 text-4xl md:text-6xl">nanitabe</p>
     </div>
     <div class="pt-40 flex justify-center gap-5 md:gap-40">
-      <home-screen-button url="/">現在地から検索</home-screen-button>
-      <home-screen-button url="/">詳細検索</home-screen-button>
+      <home-screen-button url="/location_search_result">
+        現在地から検索
+      </home-screen-button>
+      <home-screen-button url="/detail_search">詳細検索</home-screen-button>
     </div>
   </div>
 </template>
