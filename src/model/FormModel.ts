@@ -38,7 +38,7 @@ const FormModel = (): any => {
     const result = await model.signUp(form);
     loadingEnd();
 
-    if (result) {
+    if (result.isSuccess) {
       router.push({ name: config.VIEW_NAME_MY_PAGE });
     }
   };
@@ -49,7 +49,7 @@ const FormModel = (): any => {
     const result = await model.signIn(form);
     loadingEnd();
 
-    if (result) {
+    if (result.isSuccess) {
       router.push({ name: config.VIEW_NAME_MY_PAGE });
     }
   };
