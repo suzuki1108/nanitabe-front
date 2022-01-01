@@ -1,7 +1,7 @@
 <template>
   <header
-    class="flex justify-between text-white font-bold items-center drop-shadow-lg"
-    :class="is_bg_clear ? '' : 'bg-primary'"
+    class="flex justify-between text-white font-bold items-center"
+    :class="is_bg_clear ? '' : 'bg-primary shadow-lg'"
   >
     <div>
       <h1 class="mt-4 mb-4 ml-8 text-lg md:text-3xl">
