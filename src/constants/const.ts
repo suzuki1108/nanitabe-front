@@ -17,7 +17,7 @@ export const config = {
   VIEW_PATH_DETAIL_SEARCH_RESULT: "/detail_search_result",
 
   // APIのエンドポイント/URL
-  API_BASE_URL: "http://localhost:3000/", // mock: http://localhost:3000/ https://nanitabe-api.herokuapp.com/
+  API_BASE_URL: "https://nanitabe-api.herokuapp.com/", // mock: http://localhost:3000/
   ACCOUNT_REGISTER_API: "newregister",
   LOGIN_API: "login",
   LOCATION_SEARCH_API: "getcurrentlocationshop",
