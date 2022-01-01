@@ -1,5 +1,5 @@
 <template>
-  <loading-component :show="state.loading"/>
+  <loading-component :show="state.loading" />
   <div class="sign-in relative w-full min-h-screen bg-cover bg-no-repeat">
     <header-component :is_bg_clear="true" />
     <div class="mt-16 container mx-auto flex flex-col items-center">

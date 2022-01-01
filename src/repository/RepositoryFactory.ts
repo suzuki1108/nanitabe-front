@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import AccountRegisterRepository from "@/repository/AccountRegisterRepository";
 import LoginRepository from "@/repository/LoginRepository";
+import LocationSearchRepository from "@/repository/LocationSearchRepository";
 
 interface repositoryObject {
   [name: string]: any;
@@ -9,6 +10,7 @@ interface repositoryObject {
 const repositories: repositoryObject = {
   newregister: AccountRegisterRepository,
   login: LoginRepository,
+  getcurrentlocationshop: LocationSearchRepository,
 };
 
 export const RepositoryFactory = {
