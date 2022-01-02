@@ -1,10 +1,15 @@
 <template>
   <loading-component :show="isLoading" />
+  <roulette-modal
+    :show="isModalShow"
+    :storeData="state"
+    @close-modal="modalClose"
+  ></roulette-modal>
   <header-component :is_bg_clear="false" />
   <base-layout>
     <page-header
       :roulette_button="true"
-      @rouletteButtonClick="test"
+      @rouletteButtonClick="modalOpen"
       :min_record_count="1"
       :max_record_count="10"
     >
@@ -22,6 +27,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import BaseLayout from "@/components/BaseLayout.vue";
 import StoreInfo from "@/components/StoreInfo.vue";
 import LoadingComponent from "@/components/LoadingComponent.vue";
+import RouletteModal from "@/components/RouletteModal.vue";
 
 export default defineComponent({
   name: "LocationSearchResult",
@@ -31,6 +37,7 @@ export default defineComponent({
     BaseLayout,
     StoreInfo,
     LoadingComponent,
+    RouletteModal,
   },
   setup() {
     const locationSearchModel = LocationSearchModel();
