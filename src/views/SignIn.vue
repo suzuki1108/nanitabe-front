@@ -15,7 +15,7 @@
           <input
             type="text"
             v-model="form.email"
-            class="mt-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
+            class="mt-2 pl-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
             :class="emailOutLine"
           />
         </div>
@@ -25,7 +25,7 @@
           <input
             type="password"
             v-model="form.password"
-            class="mt-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
+            class="mt-2 pl-2 w-72 md:w-80 h-12 rounded-lg text-lg md:text-xl"
             :class="passwordOutLine"
           />
         </div>
