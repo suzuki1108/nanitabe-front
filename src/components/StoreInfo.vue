@@ -4,9 +4,9 @@
       class="m-4 flex flex-col items-center md:items-start md:flex-row md:justify-between"
     >
       <div class="flex flex-col items-center md:items-start md:flex-row">
-        <img :src="item.photoPc" width="180" height="180" />
+        <img class="image" :src="item.photoPc" />
 
-        <div class="ml-4">
+        <div class="ml-4 md:max-w-sm lg:max-w-2xl">
           <p class="mt-2 font-bold text-sm">{{ item.genreName }}</p>
           <p class="mt-2 text-darkgray text-xs">{{ item.catchPhrase }}</p>
           <a
@@ -42,7 +42,7 @@
               class="text-sm text-primary mr-2"
             />
             <p class="text-xs text-darkgray">
-              {{ item.budgetAverage }}
+              {{ item.budgetAverage || "-" }}
             </p>
           </div>
         </div>
@@ -112,3 +112,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
+</style>

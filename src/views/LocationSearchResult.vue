@@ -10,8 +10,8 @@
     <page-header
       :roulette_button="true"
       @rouletteButtonClick="modalOpen"
-      :min_record_count="1"
-      :max_record_count="10"
+      :min_record_count="state.resultsAvailable ? '1' : '0'"
+      :max_record_count="state.resultsAvailable || '0'"
     >
       現在地からの検索結果
     </page-header>

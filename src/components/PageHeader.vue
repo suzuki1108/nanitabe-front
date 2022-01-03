@@ -41,11 +41,11 @@ export default defineComponent({
   emits: ["roulette-button-click", "resetting-button-click"],
   props: {
     min_record_count: {
-      type: Number,
+      type: String,
       required: false,
     },
     max_record_count: {
-      type: Number,
+      type: String,
       required: false,
     },
     resetting_button: {

@@ -15,14 +15,9 @@
             {{ storeData.storeInfo[index].genreName }}
           </p>
           <p class="mt-2 text-darkgray text-xs">
-            {{ storeData.storeInfo[index].catchPhrase }}
+            {{ storeData.storeInfo[index].catchPhrase || "&nbsp;" }}
           </p>
-          <img
-            class="mt-2"
-            :src="storeData.storeInfo[index].photoPc"
-            width="300"
-            height="300"
-          />
+          <img class="mt-2 image" :src="storeData.storeInfo[index].photoPc" />
         </div>
         <p
           class="mt-2 font-bold text-lg text-blue-700 underline underline-offset-4"
@@ -106,7 +101,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 #fadeLayer {
   position: fixed;
   width: 100%;
@@ -118,5 +113,11 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 </style>
