@@ -46,7 +46,7 @@
     </detail-search-content>
 
     <detail-search-content title="予算">
-      <p>test</p>
+      <slider-bar />
     </detail-search-content>
 
     <div class="container mx-auto flex flex-col items-center">
@@ -68,6 +68,7 @@ import DetailSearchContent from "@/components/DetailSearchContent.vue";
 import CheckBoxComponent, {
   CheckBoxObject,
 } from "@/components/CheckBoxComponent.vue";
+import SliderBar from "@/components/SliderBar.vue";
 
 export default defineComponent({
   name: "DetailSearch",
@@ -77,6 +78,7 @@ export default defineComponent({
     BaseLayout,
     DetailSearchContent,
     CheckBoxComponent,
+    SliderBar,
   },
   setup() {
     const storeGenre: CheckBoxObject[] = [
