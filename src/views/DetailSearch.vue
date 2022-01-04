@@ -8,6 +8,7 @@
       <input
         type="text"
         placeholder="例: 居酒屋 宴会"
+        v-model="freeWord"
         class="outline-none border mt-1 pl-2 w-full lg:w-full xl:w-6/12 h-8 rounded-lg text-darkgray text-sm"
       />
     </detail-search-content>
@@ -34,23 +35,21 @@
       </div>
     </detail-search-content>
 
-    <detail-search-content title="喫煙">
-      <p class="text-darkgray text-xs mb-2">※複数選択可</p>
+    <detail-search-content title="予算">
+      <p class="text-darkgray text-xs mb-2">※0~2つまで選択可</p>
       <div class="grid grid-cols-8 gap-4">
         <check-box-component
-          v-for="item in tobacco"
+          v-for="item in budgetList"
           :key="item.value"
           :checkBoxObject="item"
+          :selectLimit="2"
         />
       </div>
     </detail-search-content>
 
-    <detail-search-content title="予算">
-      <slider-bar />
-    </detail-search-content>
-
     <div class="container mx-auto flex flex-col items-center">
       <button
+        @click="search"
         class="m-4 md:m-8 w-5/6 md:w-64 h-12 font-bold text-white rounded-lg shadow-lg bg-primary hover:opacity-80"
       >
         検索
@@ -61,14 +60,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import DetailSearchModel from "@/model/DetailSearchModel";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import BaseLayout from "@/components/BaseLayout.vue";
 import DetailSearchContent from "@/components/DetailSearchContent.vue";
-import CheckBoxComponent, {
-  CheckBoxObject,
-} from "@/components/CheckBoxComponent.vue";
-import SliderBar from "@/components/SliderBar.vue";
+import CheckBoxComponent from "@/components/CheckBoxComponent.vue";
 
 export default defineComponent({
   name: "DetailSearch",
@@ -78,126 +75,11 @@ export default defineComponent({
     BaseLayout,
     DetailSearchContent,
     CheckBoxComponent,
-    SliderBar,
   },
   setup() {
-    const storeGenre: CheckBoxObject[] = [
-      {
-        title: "居酒屋",
-        name: "genre",
-        size: "s",
-        value: "居酒屋",
-      },
-      {
-        title: "和食",
-        name: "genre",
-        size: "s",
-        value: "和食",
-      },
-      {
-        title: "中華",
-        name: "genre",
-        size: "s",
-        value: "中華",
-      },
-      {
-        title: "洋食",
-        name: "genre",
-        size: "s",
-        value: "洋食",
-      },
-      {
-        title: "韓国料理",
-        name: "genre",
-        size: "s",
-        value: "韓国料理",
-      },
-      {
-        title: "創作料理",
-        name: "genre",
-        size: "s",
-        value: "創作料理",
-      },
-      {
-        title: "各国料理",
-        name: "genre",
-        size: "s",
-        value: "各国料理",
-      },
-      {
-        title: "ラーメン",
-        name: "genre",
-        size: "s",
-        value: "ラーメン",
-      },
-      {
-        title: "イタリアン・フレンチ",
-        name: "genre",
-        size: "m",
-        value: "イタリアン・フレンチ",
-      },
-      {
-        title: "焼肉・ホルモン",
-        name: "genre",
-        size: "m",
-        value: "焼肉・ホルモン",
-      },
-      {
-        title: "ダイニングバー・バル",
-        name: "genre",
-        size: "m",
-        value: "ダイニングバー・バル",
-      },
-      {
-        title: "バー・カクテル",
-        name: "genre",
-        size: "m",
-        value: "バー・カクテル",
-      },
-      {
-        title: "アジア・エスニック料理",
-        name: "genre",
-        size: "m",
-        value: "アジア・エスニック料理",
-      },
-      {
-        title: "お好み焼き・もんじゃ",
-        name: "genre",
-        size: "m",
-        value: "お好み焼き・もんじゃ",
-      },
-      {
-        title: "カフェ・スイーツ",
-        name: "genre",
-        size: "m",
-        value: "カフェ・スイーツ",
-      },
-      {
-        title: "カラオケ・パーティ",
-        name: "genre",
-        size: "m",
-        value: "カラオケ・パーティ",
-      },
-    ];
-
-    const tobacco: CheckBoxObject[] = [
-      {
-        title: "喫煙可",
-        name: "tobacco",
-        size: "l",
-        value: "喫煙可",
-      },
-      {
-        title: "禁煙",
-        name: "tobacco",
-        size: "l",
-        value: "禁煙",
-      },
-    ];
-
+    const detailSearchModel = DetailSearchModel();
     return {
-      storeGenre,
-      tobacco,
+      ...detailSearchModel,
     };
   },
 });
