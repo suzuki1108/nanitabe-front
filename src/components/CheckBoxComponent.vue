@@ -1,8 +1,10 @@
 <template>
   <label :class="getColSpan">
     <input
+      @click="onClick"
       type="checkbox"
       class="hidden"
+      :id="checkBoxObject.value"
       :value="checkBoxObject.value"
       :name="checkBoxObject.name"
     />
@@ -16,13 +18,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
-
-export interface CheckBoxObject {
-  title: string;
-  name: string;
-  size: "s" | "m" | "l";
-  value: string;
-}
+import CheckBoxObject from "@/types/CheckBoxObject";
 
 export default defineComponent({
   name: "CheckBoxComponent",
@@ -30,6 +26,10 @@ export default defineComponent({
     checkBoxObject: {
       type: [Object] as PropType<CheckBoxObject>,
       required: true,
+    },
+    selectLimit: {
+      type: Number,
+      required: false,
     },
   },
   setup(props) {
@@ -46,8 +46,35 @@ export default defineComponent({
       }
     });
 
+    // propsのselectLimitが設定されている場合に同一nameチェックボックスの選択数制限制御
+    const onClick = () => {
+      if (props.selectLimit === undefined) {
+        return;
+      }
+
+      const target = document.getElementById(
+        props.checkBoxObject.value
+      ) as HTMLInputElement;
+
+      const list = document.getElementsByName(props.checkBoxObject.name);
+
+      let count = 0;
+
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i] as HTMLInputElement;
+        if (item.checked === true) {
+          count++;
+        }
+      }
+
+      if (count === props.selectLimit + 1) {
+        target.checked = false;
+      }
+    };
+
     return {
       getColSpan,
+      onClick,
     };
   },
 });

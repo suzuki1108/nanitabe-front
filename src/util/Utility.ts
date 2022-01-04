@@ -15,3 +15,22 @@ export const isPassword = (password: string): boolean => {
 export const isBlank = (str: string): boolean => {
   return str ? false : true;
 };
+
+import CheckBoxObject from "@/types/CheckBoxObject";
+// チェックボックスのvalue配列取得
+export const getCheckBoxValue = (array: CheckBoxObject[]): string[] => {
+  const checkList = array.filter((item) => {
+    const checkbox = document.getElementById(item.value) as HTMLInputElement;
+
+    if (checkbox === null) {
+      return false;
+    }
+
+    if (checkbox.checked) {
+      return true;
+    }
+    return false;
+  });
+
+  return checkList.map((item) => item.value);
+};
