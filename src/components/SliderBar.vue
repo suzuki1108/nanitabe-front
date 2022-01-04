@@ -4,7 +4,7 @@
     v-model="state"
     :min="500"
     :max="30000"
-    :step="100"
+    :step="500"
     :tooltip="true"
     tooltipColor="#CCCCCC"
     tooltipTextColor="#666666"
