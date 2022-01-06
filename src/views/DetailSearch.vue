@@ -14,14 +14,7 @@
     </detail-search-content>
 
     <detail-search-content title="エリア">
-      <p class="text-darkgray text-xs">
-        ※空欄可(空欄の場合には位置情報を元に検索します)
-      </p>
-      <input
-        type="text"
-        placeholder="例: 新宿"
-        class="outline-none border mt-1 pl-2 w-full lg:w-full xl:w-6/12 h-8 rounded-lg text-darkgray text-sm"
-      />
+      <area-component />
     </detail-search-content>
 
     <detail-search-content title="お店ジャンル">
@@ -66,6 +59,7 @@ import PageHeader from "@/components/PageHeader.vue";
 import BaseLayout from "@/components/BaseLayout.vue";
 import DetailSearchContent from "@/components/DetailSearchContent.vue";
 import CheckBoxComponent from "@/components/CheckBoxComponent.vue";
+import AreaComponent from "@/components/AreaComponent.vue";
 
 export default defineComponent({
   name: "DetailSearch",
@@ -74,6 +68,7 @@ export default defineComponent({
     PageHeader,
     BaseLayout,
     DetailSearchContent,
+    AreaComponent,
     CheckBoxComponent,
   },
   setup() {
