@@ -2,6 +2,7 @@
 import CheckBoxObject from "@/types/CheckBoxObject";
 import { getCheckBoxValue } from "@/util/Utility";
 import { ref } from "vue";
+import { largeServiceArea, largeArea, middleArea } from "@/model/AreaModel";
 
 const DetailSearchModel = (): any => {
   // フリーワード検索用リアクティブ
@@ -16,6 +17,9 @@ const DetailSearchModel = (): any => {
   };
 
   return {
+    largeServiceArea,
+    largeArea,
+    middleArea,
     freeWord,
     search,
     storeGenre,

@@ -19,6 +19,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from "vue";
 import CheckBoxObject from "@/types/CheckBoxObject";
+import { toaster_failure } from "@/model/ToasterModel";
 
 export default defineComponent({
   name: "CheckBoxComponent",
@@ -69,6 +70,7 @@ export default defineComponent({
 
       if (count === props.selectLimit + 1) {
         target.checked = false;
+        toaster_failure(props.selectLimit + "個まで選択可能です。");
       }
     };
 
