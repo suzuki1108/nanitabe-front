@@ -6,6 +6,9 @@ import AreaState from "@/types/AreaState";
 import { Location, getCurrentPosition } from "@/model/LocationModel";
 import { toaster_failure } from "./ToasterModel";
 import { largeArea, middleArea } from "./AreaModel";
+import { RepositoryFactory } from "@/repository/RepositoryFactory";
+import { config } from "@/constants/const";
+import { AxiosError } from "axios";
 
 interface DetailSearchForm {
   keyWord: string;
@@ -34,7 +37,6 @@ let areaState: AreaState = {
 const DetailSearchModel = (): any => {
   // プログレス表示用
   const loading = ref(false);
-
   // フリーワードバリデーションエラー用
   const outLine = ref("");
   // フリーワード検索用リアクティブ
@@ -89,7 +91,28 @@ const DetailSearchModel = (): any => {
       budget: getCheckBoxValue(budgetList).toString(),
     };
 
-    console.log(detailSearchForm);
+    const detailSearchRepository = RepositoryFactory.get(
+      config.DETAIL_SEARCH_API
+    );
+    const res = await detailSearchRepository
+      .indexWithQuery(detailSearchForm)
+      .catch(() => {
+        toaster_failure(config.UNEXPECTED_ERROR_MSG);
+      });
+
+    if (res === undefined) {
+      toaster_failure(config.UNEXPECTED_ERROR_MSG);
+      loading.value = false;
+      return;
+    }
+
+    if (res.status !== 200) {
+      toaster_failure(res.data.message);
+      loading.value = false;
+      return;
+    }
+
+    // 成功時の処理記載
     loading.value = false;
   };
 
