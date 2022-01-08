@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { config } from "@/constants/const";
+import { getJwtToken } from "@/model/LocalStorageModel";
 
 const repository = axios.create({
   baseURL: config.API_BASE_URL,
@@ -17,6 +18,14 @@ export default (resource: string): any => {
 
       // クエリパラメータを生成
       for (let i = 0; i < keys.length; i++) {
+        if (
+          param[keys[i]] === "" ||
+          param[keys[i]] === null ||
+          param[keys[i]] === undefined
+        ) {
+          continue;
+        }
+
         query +=
           encodeURIComponent(keys[i]) +
           "=" +
@@ -35,7 +44,15 @@ export default (resource: string): any => {
     post(payload: any) {
       return repository.post(resource, payload);
     },
-    delete(id: number) {
+    postWithAuth(payload: any) {
+      const token = getJwtToken();
+      return repository.post(resource, payload, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+    },
+    delete(id: string) {
       return repository.delete(`${resource}/${id}`);
     },
   };

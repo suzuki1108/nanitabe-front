@@ -1,30 +1,127 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CheckBoxObject from "@/types/CheckBoxObject";
-import { getCheckBoxValue } from "@/util/Utility";
-import { ref } from "vue";
-import { largeServiceArea, largeArea, middleArea } from "@/model/AreaModel";
+import { getCheckBoxValue, isContainSymbols, splitSpace } from "@/util/Utility";
+import { ref, watch } from "vue";
+import AreaState from "@/types/AreaState";
+import { Location, getCurrentPosition } from "@/model/LocationModel";
+import { toaster_failure } from "./ToasterModel";
+import { largeArea, middleArea } from "./AreaModel";
+
+interface DetailSearchForm {
+  keyWord: string;
+  areaCode: string;
+  lat: string;
+  lng: string;
+  genre: string;
+  budget: string;
+}
+
+let areaState: AreaState = {
+  selected: "",
+  largeArea: largeArea,
+  middleArea: middleArea,
+  smallArea: [],
+  ls_code: "",
+  ls_name: "",
+  la_code: "",
+  la_name: "",
+  ma_code: "",
+  ma_name: "",
+  sa_code: [],
+  sa_name: [],
+};
 
 const DetailSearchModel = (): any => {
+  // プログレス表示用
+  const loading = ref(false);
+
+  // フリーワードバリデーションエラー用
+  const outLine = ref("");
   // フリーワード検索用リアクティブ
   const freeWord = ref("");
+  watch(
+    () => freeWord,
+    () => {
+      if (isContainSymbols(freeWord.value)) {
+        outLine.value = "outline-red";
+        return;
+      } else {
+        outLine.value = "";
+      }
+    },
+    { deep: true }
+  );
 
-  const search = () => {
-    const genres = getCheckBoxValue(storeGenre);
-    const budgets = getCheckBoxValue(budgetList);
-    console.log(freeWord);
-    console.log(genres);
-    console.log(budgets);
+  const areaChange = (area: any) => {
+    areaState = area;
+  };
+
+  const search = async () => {
+    loading.value = true;
+
+    if (outLine.value !== "") {
+      toaster_failure("フリーワードは記号以外で入力してください。");
+      loading.value = false;
+      return;
+    }
+
+    let location: Location = {
+      lat: 0,
+      lng: 0,
+    };
+
+    if (getArea(areaState) === "") {
+      location = await getCurrentPosition();
+
+      if (location.lat === 0 && location.lng === 0) {
+        toaster_failure("位置情報をONにするか、エリア情報を入力してください。");
+        loading.value = false;
+        return;
+      }
+    }
+
+    const detailSearchForm: DetailSearchForm = {
+      keyWord: splitSpace(freeWord.value).toString(),
+      areaCode: getArea(areaState),
+      lat: location.lat === 0 ? "" : location.lat.toString(),
+      lng: location.lng === 0 ? "" : location.lng.toString(),
+      genre: getCheckBoxValue(storeGenre).toString(),
+      budget: getCheckBoxValue(budgetList).toString(),
+    };
+
+    console.log(detailSearchForm);
+    loading.value = false;
   };
 
   return {
-    largeServiceArea,
-    largeArea,
-    middleArea,
+    outLine,
+    loading,
     freeWord,
+    areaChange,
     search,
     storeGenre,
     budgetList,
   };
+};
+
+const getArea = (area: AreaState): string => {
+  if (area.ls_code === "") {
+    return "";
+  }
+
+  if (area.la_code === "") {
+    return area.ls_code;
+  }
+
+  if (area.ma_code === "") {
+    return area.la_code;
+  }
+
+  if (area.sa_code.length === 0) {
+    return area.ma_code;
+  }
+
+  return area.sa_code.toString();
 };
 
 export default DetailSearchModel;

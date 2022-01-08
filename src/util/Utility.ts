@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 // 引数の文字列がEmail形式であるかを返却
 export const isEmailAddress = (email: string): boolean => {
   const regexp =
@@ -9,6 +10,17 @@ export const isEmailAddress = (email: string): boolean => {
 export const isPassword = (password: string): boolean => {
   const regexp = /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,20}$/i;
   return regexp.test(password);
+};
+
+// 記号を含む文字列であるかを返却
+export const isContainSymbols = (str: string): boolean => {
+  const regexp = /[^ 　ぁ-んァ-ンーa-zA-Z0-9一-龠０-９\-\r]+/u;
+  return regexp.test(str);
+};
+
+// 半角全角スペースで文字列を区切る
+export const splitSpace = (str: string): string[] => {
+  return str.replaceAll("　", " ").split(" ");
 };
 
 // 空文字判定
