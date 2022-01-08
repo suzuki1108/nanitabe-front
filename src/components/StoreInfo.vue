@@ -48,6 +48,7 @@
         </div>
       </div>
       <button
+        @click="register(item.id)"
         v-if="!isMyPage"
         class="text-sm text-darkgray w-64 h-8 md:w-36 mt-4 md:mt-0 bg-secondary rounded-lg shadow-lg hover:opacity-80"
       >
@@ -77,6 +78,7 @@ import Divider from "./Divider.vue";
 import FontAwesomeConst from "@/constants/FontAwesomeConst";
 import FontAwesomeComponent from "@/components/FontAwesomeComponent.vue";
 import { StoreSearchResult } from "@/model/StoreInfoModel.ts";
+import { FavoriteModel } from "@/model/FavoriteModel";
 
 export default defineComponent({
   components: {
@@ -96,6 +98,7 @@ export default defineComponent({
     },
   },
   setup() {
+    const favoriteModel = FavoriteModel();
     const subway = FontAwesomeConst.SUBWAY;
     const clock = FontAwesomeConst.CLOCK;
     const yen = FontAwesomeConst.YEN_SIGN;
@@ -103,6 +106,7 @@ export default defineComponent({
     const trash = FontAwesomeConst.TRASH;
 
     return {
+      ...favoriteModel,
       subway,
       clock,
       yen,

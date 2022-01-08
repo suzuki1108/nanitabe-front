@@ -21,6 +21,9 @@ export const config = {
   ACCOUNT_REGISTER_API: "newregister",
   LOGIN_API: "login",
   LOCATION_SEARCH_API: "getcurrentlocationshop",
+  FAVORITE_API: "favorite",
+  DETAIL_SEARCH_API: "detailedsearch",
+  AREA_API: "getsmallarea",
 
   // ローカルストレージのKEY
   JWT_TOKEN_KEY: "nanitabeJwtToken",
