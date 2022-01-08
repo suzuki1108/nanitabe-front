@@ -1,20 +1,25 @@
 <template>
+  <loading-component :show="loading" />
   <header-component :is_bg_clear="false" />
   <base-layout>
     <page-header>詳細検索</page-header>
 
     <detail-search-content title="フリーワード">
       <p class="text-darkgray text-xs">※空欄可</p>
+      <p class="text-red-500 text-xs" v-if="outLine !== ''">
+        記号以外で入力してください。
+      </p>
       <input
         type="text"
         placeholder="例: 居酒屋 宴会"
         v-model="freeWord"
         class="outline-none border mt-1 pl-2 w-full lg:w-full xl:w-6/12 h-8 rounded-lg text-darkgray text-sm"
+        :class="outLine"
       />
     </detail-search-content>
 
     <detail-search-content title="エリア">
-      <area-component />
+      <area-component @onChange="areaChange" />
     </detail-search-content>
 
     <detail-search-content title="お店ジャンル">
@@ -53,6 +58,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import LoadingComponent from "@/components/LoadingComponent.vue";
 import DetailSearchModel from "@/model/DetailSearchModel";
 import HeaderComponent from "@/components/HeaderComponent.vue";
 import PageHeader from "@/components/PageHeader.vue";
@@ -64,6 +70,7 @@ import AreaComponent from "@/components/AreaComponent.vue";
 export default defineComponent({
   name: "DetailSearch",
   components: {
+    LoadingComponent,
     HeaderComponent,
     PageHeader,
     BaseLayout,
@@ -79,3 +86,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.outline-red {
+  outline: 2px solid red;
+  outline-offset: 0px;
+}
+</style>

@@ -23,7 +23,11 @@ export const getCurrentPosition = (): Promise<Location> => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const failure = (position: any): void => {
         toaster_failure("位置情報の取得に失敗しました。");
-        reject("位置情報の取得に失敗しました。");
+        const location: Location = {
+          lat: 0,
+          lng: 0,
+        };
+        resolve(location);
       };
 
       // 現在地取得
