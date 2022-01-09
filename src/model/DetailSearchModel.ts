@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import CheckBoxObject from "@/types/CheckBoxObject";
 import { getCheckBoxValue, isContainSymbols, splitSpace } from "@/util/Utility";
-import { ref, watch } from "vue";
+import { inject, ref, watch } from "vue";
 import AreaState from "@/types/AreaState";
 import { Location, getCurrentPosition } from "@/model/LocationModel";
 import { toaster_failure } from "./ToasterModel";
 import { largeArea, middleArea } from "./AreaModel";
 import { RepositoryFactory } from "@/repository/RepositoryFactory";
 import { config } from "@/constants/const";
+import router from "@/router";
+import { StoreSearchResult } from "./StoreInfoModel";
 
 interface DetailSearchForm {
   keyWord: string;
@@ -40,6 +42,8 @@ const DetailSearchModel = (): any => {
   const outLine = ref("");
   // フリーワード検索用リアクティブ
   const freeWord = ref("");
+  // プロバイダから取得
+  const detailSearchResult = inject<StoreSearchResult>("detailSearchResult");
   watch(
     () => freeWord,
     () => {
@@ -111,8 +115,19 @@ const DetailSearchModel = (): any => {
       return;
     }
 
-    // 成功時の処理記載
+    // プロバイダに結果を渡す
+    if (!detailSearchResult) {
+      toaster_failure(config.UNEXPECTED_ERROR_MSG);
+      loading.value = false;
+      return;
+    }
+
+    detailSearchResult.resultsAvailable = res.data.resultsAvailable;
+    detailSearchResult.storeInfo = res.data.shop;
+    detailSearchResult.message = res.data.message;
+
     loading.value = false;
+    router.push({ name: config.VIEW_NAME_DETAIL_SEARCH_RESULT });
   };
 
   return {
