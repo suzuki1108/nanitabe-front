@@ -41,13 +41,9 @@ export default defineComponent({
   },
   setup() {
     const locationSearchModel = LocationSearchModel();
-    const test = () => {
-      alert("test");
-    };
 
     return {
       ...locationSearchModel,
-      test,
     };
   },
 });
