@@ -49,6 +49,8 @@ export default defineComponent({
       if (state.message === "") {
         router.push({ name: config.VIEW_NAME_DETAIL_SEARCH });
       }
+      // スクロール位置を先頭に
+      window.scroll({ top: 0, behavior: "smooth" });
     });
 
     // 初期化
