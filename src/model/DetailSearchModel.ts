@@ -8,7 +8,6 @@ import { toaster_failure } from "./ToasterModel";
 import { largeArea, middleArea } from "./AreaModel";
 import { RepositoryFactory } from "@/repository/RepositoryFactory";
 import { config } from "@/constants/const";
-import { AxiosError } from "axios";
 
 interface DetailSearchForm {
   keyWord: string;
