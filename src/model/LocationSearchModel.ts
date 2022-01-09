@@ -23,7 +23,7 @@ const LocationSearchModel = (): any => {
   };
   const modalClose = () => {
     isModalShow.value = false;
-  }
+  };
 
   const getData = async () => {
     try {

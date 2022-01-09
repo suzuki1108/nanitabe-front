@@ -1,4 +1,5 @@
 <template>
+  <loading-component :show="loading" />
   <p class="text-darkgray text-xs mb-2">
     <span v-if="state.selected === ''">
       ※選択しない場合は位置情報を元に周囲のお店から検索します。
@@ -127,7 +128,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watch } from "vue";
+import { defineComponent, reactive, ref, watch } from "vue";
 import { AxiosError } from "axios";
 import {
   largeServiceArea,
@@ -142,11 +143,16 @@ import { RepositoryFactory } from "@/repository/RepositoryFactory";
 import { config } from "@/constants/const";
 import { toaster_failure } from "@/model/ToasterModel";
 import AreaState from "@/types/AreaState";
+import LoadingComponent from "@/components/LoadingComponent.vue";
 
 export default defineComponent({
   name: "CheckBoxComponent",
   emits: ["onChange"],
+  components: {
+    LoadingComponent,
+  },
   setup(_, context) {
+    const loading = ref(false);
     const state = reactive<AreaState>({
       selected: "",
       largeArea: largeArea,
@@ -234,6 +240,7 @@ export default defineComponent({
     };
 
     const maSelect = async (selected: MiddleArea) => {
+      loading.value = true;
       state.selected = "MA";
       state.ma_code = selected.code;
       state.ma_name = selected.name;
@@ -247,6 +254,7 @@ export default defineComponent({
       const res = await areaRepository
         .indexWithQuery(param)
         .catch((e: AxiosError) => {
+          loading.value = false;
           return e.response;
         });
 
@@ -255,6 +263,7 @@ export default defineComponent({
       } else {
         toaster_failure(config.UNEXPECTED_ERROR_MSG);
       }
+      loading.value = false;
     };
 
     // propsのselectLimitが設定されている場合に同一nameチェックボックスの選択数制限制御
@@ -288,6 +297,7 @@ export default defineComponent({
     };
 
     return {
+      loading,
       state,
       reset,
       lsSelect,
