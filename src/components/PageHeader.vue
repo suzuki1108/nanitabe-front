@@ -4,7 +4,10 @@
       <h2 class="font-bold text-base md:text-xl md:ml-4">
         <slot></slot>
       </h2>
-      <p v-if="min_record_count !== '0'" class="ml-2 md:ml-5 text-xs">
+      <p
+        v-if="min_record_count !== '0' && min_record_count !== undefined"
+        class="ml-2 md:ml-5 text-xs"
+      >
         <span class="font-bold">
           {{ min_record_count }}~{{ max_record_count }}件
         </span>
