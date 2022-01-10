@@ -38,6 +38,14 @@ export default (resource: string): any => {
 
       return repository.get(resource + query);
     },
+    indexWithAuth() {
+      const token = getJwtToken();
+      return repository.get(resource, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+    },
     show(id: number) {
       return repository.get(`${resource}/${id}`);
     },
@@ -54,6 +62,14 @@ export default (resource: string): any => {
     },
     delete(id: string) {
       return repository.delete(`${resource}/${id}`);
+    },
+    deleteWithAuth(id: string) {
+      const token = getJwtToken();
+      return repository.delete(`${resource}/${id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
     },
   };
 };
