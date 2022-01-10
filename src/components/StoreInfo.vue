@@ -68,7 +68,10 @@
     <divider />
   </div>
 
-  <div v-if="!storeData.resultsAvailable" class="text-xl mt-8 text-darkgray">
+  <div
+    v-if="storeData.resultsAvailable == 0"
+    class="text-xl mt-8 text-darkgray"
+  >
     <p v-if="!isMyPage">{{ storeData.message }}</p>
     <p v-if="isMyPage">お気に入りの店舗が存在しません。</p>
   </div>

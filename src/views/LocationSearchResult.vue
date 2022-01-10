@@ -10,7 +10,7 @@
     <page-header
       :roulette_button="true"
       @rouletteButtonClick="modalOpen"
-      :min_record_count="state.resultsAvailable ? '1' : '0'"
+      :min_record_count="state.resultsAvailable > 0 ? '1' : '0'"
       :max_record_count="state.resultsAvailable || '0'"
     >
       現在地からの検索結果
