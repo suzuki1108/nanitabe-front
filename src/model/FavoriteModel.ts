@@ -24,12 +24,8 @@ export const FavoriteModel = (): any => {
       return;
     }
 
-    const body = {
-      shopId: shopId,
-    };
-
     const res = await favoriteRepository
-      .postWithAuth(body)
+      .postWithAuth(shopId)
       .catch((e: AxiosError) => {
         favLoading.value = false;
         return e.response;
