@@ -24,8 +24,12 @@ export const FavoriteModel = (): any => {
       return;
     }
 
+    const body = {
+      shopId: shopId,
+    };
+
     const res = await favoriteRepository
-      .postWithAuth(shopId)
+      .postWithAuth(body)
       .catch((e: AxiosError) => {
         favLoading.value = false;
         return e.response;
@@ -55,12 +59,8 @@ export const FavoriteModel = (): any => {
       return;
     }
 
-    const body = {
-      shopId: shopId,
-    };
-
     const res = await favoriteRepository
-      .deleteWithAuth(body)
+      .deleteWithAuth(shopId)
       .catch((e: AxiosError) => {
         favLoading.value = false;
         return e.response;
