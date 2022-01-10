@@ -1,4 +1,5 @@
 <template>
+  <loading-component :show="favLoading" />
   <div v-for="item in storeData.storeInfo" :key="item.id">
     <div
       class="m-4 flex flex-col items-center md:items-start md:flex-row md:justify-between"
@@ -56,6 +57,7 @@
         お気に入り登録
       </button>
       <button
+        @click="deleteFavorite(item.id)"
         v-if="isMyPage"
         class="text-sm text-darkgray w-64 h-8 md:w-16 mt-4 md:mt-0 bg-lightgray rounded-lg shadow-lg hover:opacity-80"
       >
@@ -79,11 +81,13 @@ import FontAwesomeConst from "@/constants/FontAwesomeConst";
 import FontAwesomeComponent from "@/components/FontAwesomeComponent.vue";
 import { StoreSearchResult } from "@/model/StoreInfoModel.ts";
 import { FavoriteModel } from "@/model/FavoriteModel";
+import LoadingComponent from "@/components/LoadingComponent.vue";
 
 export default defineComponent({
   components: {
     FontAwesomeComponent,
     Divider,
+    LoadingComponent,
   },
   name: "StoreInfo",
   emits: [],

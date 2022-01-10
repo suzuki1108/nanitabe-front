@@ -15,7 +15,14 @@ export default defineComponent({
       storeInfo: [],
       message: "",
     });
+    const favoriteStoreList = reactive<StoreSearchResult>({
+      resultsAvailable: 0,
+      storeInfo: [],
+      message: "",
+    });
+
     provide<StoreSearchResult>("detailSearchResult", detailSearchResult);
+    provide<StoreSearchResult>("favoriteStoreList", favoriteStoreList);
   },
 });
 </script>
