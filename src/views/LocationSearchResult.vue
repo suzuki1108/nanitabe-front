@@ -15,7 +15,7 @@
     >
       現在地からの検索結果
     </page-header>
-    <store-info :storeData="state" />
+    <store-info :storeData="state" :isMyPage="true" />
   </base-layout>
 </template>
 
