@@ -1,6 +1,13 @@
 # nanitabe-app
-飲食店検索アプリケーションのフロント
-バックエンドは友人のKazumaさん（https://github.com/kazuma24）が作成
+飲食店検索アプリケーションのフロントのソース
+
+
+バックエンドは友人のKazumaさん（ https://github.com/kazuma24 ）が作成
+
+## 使用技術
+- TypeScript
+- Vue.js 3.0
+- tailwind CSS
 
 ## ローカル環境構築について
 ```
