@@ -1,6 +1,6 @@
 # nanitabe-app
 飲食店検索アプリケーションのフロントのソース
-
+( https://nanitabe-web.netlify.app/ )
 
 バックエンドは友人のKazumaさん（ https://github.com/kazuma24 ）が作成
 
